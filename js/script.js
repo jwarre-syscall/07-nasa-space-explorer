@@ -118,7 +118,7 @@ function showDetails(item) {
   modalMedia.replaceChildren();
   modalTitle.textContent = item.title;
   modalDate.textContent = formatDate(item.date);
-  modalExplanation.textContent = item.explanation || 'NASA has not provided an explanation for this entry.';
+  const explanation = item.explanation ? new DOMParser().parseFromString(item.explanation, 'text/html').body.textContent : '';\n  modalExplanation.textContent = explanation || 'NASA has not provided an explanation for this entry.';
   modalLink.href = item.permalink || item.url;
   modalLink.hidden = !item.url;
   modalLink.textContent = item.media_type === 'video' ? 'Open video on NASA ↗' : 'View on NASA ↗';
@@ -171,7 +171,8 @@ async function loadSpaceImages() {
   resultCount.textContent = '';
   setStatus('Loading space photos…', 'loading');
 
-  const nasaDate = (value) => value.replaceAll('-', '').slice(2);\n  const params = new URLSearchParams({ date_from: nasaDate(startDate), date_to: nasaDate(endDate) });
+  const nasaDate = (value) => value.replaceAll('-', '').slice(2);
+  const params = new URLSearchParams({ date_from: nasaDate(startDate), date_to: nasaDate(endDate) });
   try {
     const response = await fetch('https://science.nasa.gov/wp-json/wp/v2/apod-basic/?' + params.toString(), {
       signal: activeRequest.signal
