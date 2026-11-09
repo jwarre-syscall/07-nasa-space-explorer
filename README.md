@@ -1,11 +1,17 @@
-# Project 7: NASA API - Space Explorer App
-NASA releases a new "Astronomy Picture of the Day" (APOD) every day—spotlighting breathtaking images of galaxies, stars, planets, and more.
+# Project 7: Space Image Explorer
 
-Your task is to build an interactive web app that fetches and displays these photos using [NASA's API](https://api.nasa.gov/). Users will pick a date range and instantly view stunning photos from across the cosmos, along with titles and descriptions.
+An independent educational web app for exploring NASA's Astronomy Picture of the Day (APOD) archive by date. It displays NASA-provided image and video entries with titles, dates, explanations, and links to the original NASA pages.
 
-You'll get to use your skills to build something that's actually connected to real-world data from one of the most iconic organizations in the world.
+This project is not affiliated with or endorsed by NASA. NASA's name is used only to identify the source of the APOD material. NASA identifiers and logos are not used as project branding.
 
-## Starter Files
-- The provided files include a NASA logo, date inputs, a button, a placeholder for your gallery, and basic layout and styling to help you get started.
-- It also includes built-in logic (in `dateRange.js`) to handle the valid APOD date range—from June 16, 1995 to today. No need to modify it.
-- All your custom JavaScript should go in `script.js`. That's where you'll write the code that fetches data and displays your gallery.
+## Features
+- Select a valid APOD date range and browse the gallery.
+- Open an entry to read its explanation and view image or video content.
+- Learn a random space fact and see a loading status while entries are fetched.
+- Responsive layout with accessible controls and reduced-motion support.
+
+## Data source
+The APOD entries are fetched from NASA's public APOD web endpoint. NASA API keys are not embedded in this repository.
+
+## Attribution
+APOD content is courtesy of NASA. This independent educational project does not imply NASA sponsorship or endorsement.
