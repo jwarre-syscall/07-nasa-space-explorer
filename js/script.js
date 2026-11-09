@@ -71,7 +71,7 @@ function createCard(item) {
   } else {
     const image = document.createElement('img');
     image.className = 'card-image';
-    image.src = item.url;
+    image.src = item.hdurl || item.url;
     image.alt = item.title;
     image.loading = 'lazy';
     image.onerror = () => { image.replaceWith(createVideoPlaceholder()); };
@@ -119,12 +119,12 @@ function showDetails(item) {
   modalTitle.textContent = item.title;
   modalDate.textContent = formatDate(item.date);
   modalExplanation.textContent = item.explanation || 'NASA has not provided an explanation for this entry.';
-  modalLink.href = item.url;
+  modalLink.href = item.permalink || item.url;
   modalLink.hidden = !item.url;
   modalLink.textContent = item.media_type === 'video' ? 'Open video on NASA ↗' : 'View on NASA ↗';
 
   if (item.media_type === 'video') {
-    const embedUrl = youtubeEmbedUrl(item.url);
+    const embedUrl = youtubeEmbedUrl(item.video_url || item.url);
     if (embedUrl) {
       const frame = document.createElement('iframe');
       frame.src = embedUrl;
@@ -171,7 +171,7 @@ async function loadSpaceImages() {
   resultCount.textContent = '';
   setStatus('Loading space photos…', 'loading');
 
-  const params = new URLSearchParams({ start_date: startDate, end_date: endDate });
+  const nasaDate = (value) => value.replaceAll('-', '').slice(2);\n  const params = new URLSearchParams({ date_from: nasaDate(startDate), date_to: nasaDate(endDate) });
   try {
     const response = await fetch('https://science.nasa.gov/wp-json/wp/v2/apod-basic/?' + params.toString(), {
       signal: activeRequest.signal
