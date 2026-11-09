@@ -173,7 +173,7 @@ async function loadSpaceImages() {
 
   const params = new URLSearchParams({ start_date: startDate, end_date: endDate });
   try {
-    const response = await fetch('https://api.nasa.gov/planetary/apod?' + params.toString(), {
+    const response = await fetch('https://science.nasa.gov/wp-json/wp/v2/apod-basic/?' + params.toString(), {
       signal: activeRequest.signal
     });
     const data = await response.json();
