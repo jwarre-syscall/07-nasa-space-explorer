@@ -118,7 +118,8 @@ function showDetails(item) {
   modalMedia.replaceChildren();
   modalTitle.textContent = item.title;
   modalDate.textContent = formatDate(item.date);
-  const explanation = item.explanation ? new DOMParser().parseFromString(item.explanation, 'text/html').body.textContent : '';\n  modalExplanation.textContent = explanation || 'NASA has not provided an explanation for this entry.';
+  const explanation = item.explanation ? new DOMParser().parseFromString(item.explanation, 'text/html').body.textContent : '';
+  modalExplanation.textContent = explanation || 'NASA has not provided an explanation for this entry.';
   modalLink.href = item.permalink || item.url;
   modalLink.hidden = !item.url;
   modalLink.textContent = item.media_type === 'video' ? 'Open video on NASA ↗' : 'View on NASA ↗';
